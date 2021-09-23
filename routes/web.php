@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/begin', function() {
+    echo "hola";
+});
+
+Route::get('/grades', [\App\Http\Controllers\GradeController::class, 'index']);
