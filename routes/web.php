@@ -21,4 +21,9 @@ Route::get('/begin', function() {
     echo "hola";
 });
 
-Route::get('/grades', [\App\Http\Controllers\GradeController::class, 'index']);
+Route::get('/index', [\App\Http\Controllers\GradeController::class, 'index']);
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

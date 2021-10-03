@@ -7,6 +7,7 @@ class GradeController extends Controller
 {
     public function index() {
         $grades = grades::all();
-        dd($grades);
+
+        return view('grades.index', compact('grades'));
     }
 }
