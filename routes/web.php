@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\GradeController;
+use App\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,11 +20,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/begin', function() {
-    echo "hola";
-});
 
-Route::get('/index', [\App\Http\Controllers\GradeController::class, 'index']);
+Route::get('/index', [GradeController::class, 'index'])->middleware('auth');
+
+
+Route::get('/admin', [AdminController::class, 'create'])->middleware('isAdmin');
 
 
 Auth::routes();

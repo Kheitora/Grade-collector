@@ -5,8 +5,10 @@
 <html>
 <body>
 
-<h1>Hello</h1>
+<h1>Hier kunnen leerlingen hun cijfers bekijken</h1>
+@foreach ($grades as $grade)
 
-<p>{{$grades}}</p>
+<p>{{$grade->grade}}</p>
+    @endforeach
 </body>
 </html>
