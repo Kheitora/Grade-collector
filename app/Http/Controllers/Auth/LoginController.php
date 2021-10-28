@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use http\Client\Curl\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Client\Request;
 
 class LoginController extends Controller
 {
@@ -36,5 +38,13 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    protected function counter(Request $request,$user)
+    {
+
+        $user->loginCount++;
+        $user->save();
+
     }
 }

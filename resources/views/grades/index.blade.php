@@ -1,14 +1,34 @@
-<?php
-?>
+@extends('layouts.app')
 
-<!DOCTYPE html>
-<html>
-<body>
 
-<h1>Hier kunnen leerlingen hun cijfers bekijken</h1>
-@foreach ($grades as $grade)
+@section('content')
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">{{ __('Grades') }}</div>
 
-<p>{{$grade->grade}}</p>
-    @endforeach
-</body>
-</html>
+                    <div class="card-body">
+
+                        <p>This is where the grades will be</p>
+                        @foreach ($grades as $grade)
+
+                            <p><a href="{{route('grades.show', $grade)}}">{{$grade->grade}}</a></p>
+                        @endforeach
+
+
+                        <form method="get" action="/admin">
+                        <div class="field">
+                            <div class="control">
+                                <button type="submit" class="button is-link is-outlined">Add Grade</button>
+                            </div>
+                        </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+

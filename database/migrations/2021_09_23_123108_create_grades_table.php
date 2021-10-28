@@ -16,8 +16,10 @@ class CreateGradesTable extends Migration
         Schema::create('grades', function (Blueprint $table) {
             $table->id();
             $table->integer('grade');
-            $table->boolean('pass/fail');
-            $table->integer('study-points');
+            $table->boolean('pass/fail')->nullable();
+            $table->string('subject');
+            $table->rememberToken();
+            $table->timestamps();
         });
     }
 
@@ -28,6 +30,6 @@ class CreateGradesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('grades');
+        Schema::dropIfExists('grade');
     }
 }
