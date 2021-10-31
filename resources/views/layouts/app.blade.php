@@ -53,6 +53,7 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
+
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
@@ -64,7 +65,23 @@
                                         {{ __('Logout') }}
                                     </a>
 
+                                    <a class="dropdown-item" href="{{ route('grades.profile') }}">
+                                        {{ __('Profile') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="/index">
+                                        {{ __('index') }}
+                                    </a>
+
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+
+                                    <form id="'profile-form" action="{{route('grades.profile') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+
+                                    <form id="'profile-form" action="/index" method="POST" class="d-none">
                                         @csrf
                                     </form>
                                 </div>

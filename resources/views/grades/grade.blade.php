@@ -2,6 +2,9 @@
 
 
 @section('content')
+    @if (session('status'))
+        <h6 class="alert alert-success">{{ session('status') }}</h6>
+    @endif
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -13,6 +16,19 @@
                         <p>You can either edit the grade or delete it completely</p>
 
                             <p>{{$grade->grade}}</p>
+
+                        <form id="{{$grade->id}}" action="{{url('/status/'. $grade->id)}}" method="POST">
+                            @method('patch')
+                            @csrf
+                            <td>
+                                <input type="checkbox"
+                                       id="active-{{$grade->id}}"
+                                       name="active" class="js-switch"
+                                       onchange="this.form.submit()"
+                                    {{ $grade->status === 1 ? 'checked' : '' }}>
+                            </td>
+                        </form>
+
 
 
                         <form method="get" action="{{route('grades.delete', $grade)}}">

@@ -16,8 +16,8 @@ class CreateGradesTable extends Migration
         Schema::create('grades', function (Blueprint $table) {
             $table->id();
             $table->integer('grade');
-            $table->boolean('pass/fail')->nullable();
             $table->string('subject');
+            $table->boolean('status')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });

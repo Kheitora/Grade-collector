@@ -9,9 +9,12 @@ class grade extends Model
 {
     use HasFactory;
 
+    protected $table = 'grades';
+
     protected $fillable = [
         'grade',
         'subject',
+        'status',
 
     ];
 }

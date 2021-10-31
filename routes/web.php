@@ -1,8 +1,12 @@
 <?php
 
 use App\Http\Controllers\GradeController;
+use App\Models\grade;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Input;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +23,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::post( '/search',[Gradecontroller::class, 'search'])->middleware('auth');
+
 Route::get('/index', [GradeController::class, 'index'])->middleware('auth');
 
 Route::get('/admin', [GradeController::class, 'admin'])->middleware('isAdmin');
@@ -34,6 +40,18 @@ Route::patch('/update/{grade}', [GradeController::class, 'update'])->name('grade
 Route::get('/delete/{grade}', [GradeController::class, 'delete'])->name('grades.delete')->middleware('isAdmin');
 
 Route::get('/destroy/{grade}', [GradeController::class, 'destroy'])->name('grades.destroy')->middleware('isAdmin');
+
+Route::get('/userLogin', [GradeController::class, 'userlogin'])->name('userlogin');
+
+Route::get('/filter', [GradeController::class, 'filter'])->middleware('auth');
+
+Route::patch('/userdata', [GradeController::class, 'userdata'])->name('grades.userdata')->middleware('auth');
+
+Route::get('/secret', [GradeController::class, 'secret'])->name('grades.secret')->middleware('auth');
+
+Route::get('/profile', [GradeController::class, 'profile'])->name('grades.profile')->middleware('auth');
+
+Route::patch('/status/{grade}', [GradeController::class, 'status'])->middleware('isAdmin');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();
